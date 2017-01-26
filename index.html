@@ -19,6 +19,7 @@
 
 
     <div id="reader" style="width:300px;height:250px;"></div>
+    <div id="scanned" style="background: seagreen; color: white; width: 300px"> Scanned item! </div>
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
@@ -35,9 +36,19 @@
 </script>
 
 <script>
+        var e_scan = document.getElementById("scanned"); 
+
+        function hide_scanned(){
+             e_scan.hidden = true;
+        };
+
+        hide_scanned();
+
         $(document).ready(function () {
             $('#reader').html5_qrcode(function (data) {
                 console.log(data);
+                e_scan.hidden = false;
+                setTimeout(hide_scanned,1000); 
                 beep();
             },
                 function (error) {
